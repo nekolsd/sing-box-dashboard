@@ -107,10 +107,10 @@ export interface DesktopReportArchive {
 
 export type DesktopSpeedMode = "disabled" | "enabled" | "unified";
 
-export type DesktopUpdateTrack = "stable" | "beta";
 export type DesktopUpdateInstallResult = "started" | "signer-mismatch" | "not-newer";
 
 export interface DesktopUpdateInfo {
+  versionCode: number;
   versionName: string;
   releaseURL: string;
   downloadURL: string;
@@ -121,7 +121,6 @@ export interface DesktopUpdateInfo {
 
 export interface DesktopUpdatesState {
   supported: boolean;
-  track: DesktopUpdateTrack;
   checkUpdateEnabled: boolean;
   prompted: boolean;
   info: DesktopUpdateInfo | null;
@@ -339,7 +338,6 @@ export interface DesktopHost {
     setGitHubToken(value: string): Promise<void>;
     downloadAndInstall(): Promise<DesktopUpdateInstallResult>;
     installWithElevation(): Promise<boolean>;
-    setTrack(track: DesktopUpdateTrack): Promise<void>;
     setCheckUpdateEnabled(value: boolean): Promise<void>;
     setPrompted(): Promise<void>;
     markShown(): Promise<void>;

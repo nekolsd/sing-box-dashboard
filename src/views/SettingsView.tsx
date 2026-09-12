@@ -13,7 +13,7 @@ import { formatBytes } from "../api/format";
 import { useStream } from "../api/stream";
 import { navigate, useApi, type AccentPreference, type ThemePreference } from "../app/context";
 import { useDesktopHost, useLocalDesktopHost } from "../app/desktop";
-import type { DesktopHost, DesktopSettingsState, DesktopUpdateTrack } from "../app/desktop";
+import type { DesktopHost, DesktopSettingsState } from "../app/desktop";
 import {
   loadDisableDeprecatedWarnings,
   saveDisableDeprecatedWarnings,
@@ -355,20 +355,6 @@ function UpdateSettingsSection({ host }: { host: DesktopHost }) {
     <div>
       <div className="list-section-title">{t("Update")}</div>
       <div className={styles.settingsList}>
-        <div className="settings-row">
-          <span className="settings-row-label">{t("Update Track")}</span>
-          <Select<DesktopUpdateTrack>
-            inline
-            options={[
-              { value: "stable", label: t("Stable") },
-              { value: "beta", label: t("Beta") },
-            ]}
-            value={updates.track}
-            onChange={(track) => {
-              void host.updates.setTrack(track).catch(showError);
-            }}
-          />
-        </div>
         <button type="button" className="settings-row" onClick={editGitHubToken}>
           <span className="settings-row-label">{t("GitHub Token")}</span>
           <Icon name="keyboard_arrow_right" size={14} />
